@@ -10,7 +10,11 @@ Projeto desenvolvimento no curso da RocketSeat o <strong> Ignite</strong>, busca
 &#160;&#160;&#160;-> <strong> Hooks (useState, useEffect) </strong> <br />
 &#160;&#160;&#160;-> <strong> Imutabilidade </strong> <br />
 
-Para acessar o projeto entre em: <a target="_blank" href="https://fundamentos-react-js.vercel.app/" >Fundamentos React Js</a>
+Para acessar o projeto entre em:  [link](url){:target="_blank"}
+
+
+<a target="_blank" href="https://fundamentos-react-js.vercel.app/" >Fundamentos React Js</a>
+[go](http://stackoverflow.com){:target="_blank" rel="noopener"}
 
 
 Tecnologias utilizadas: <br />
