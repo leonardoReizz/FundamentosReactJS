@@ -5,7 +5,6 @@ import { Comment } from './Comment';
 import { Avatar } from './Avatar';
 import styles from './Post.module.css';
 
-
 interface PostProps{
   author: {
     avatarUrl: string;
@@ -19,12 +18,14 @@ interface PostProps{
   publishedAt: Date;
 }
 
+export interface IComment {
+  message: string;
+  publishedAt: Date;
+}
+
 export function Post({ author, content, publishedAt }: PostProps) {
-  const [comments, setComments] = useState<string[]>([]);
+  const [comments, setComments] = useState<IComment[]>([]);
   const [newCommentText, setNewCommentText] = useState<string>('');
-  const publishedDateFormatted = format(publishedAt, "dd 'de' LLLL 'às' HH:mm'h'", {
-    locale: ptBR,
-  });
 
   const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
     locale: ptBR,
@@ -32,13 +33,13 @@ export function Post({ author, content, publishedAt }: PostProps) {
   });
 
   const deleteComment = useCallback((commentToDelete: string) => {
-    const commentsAfterDeleteOne = comments.filter(comment => comment !== commentToDelete);
+    const commentsAfterDeleteOne = comments.filter(comment => comment.message !== commentToDelete);
     setComments(commentsAfterDeleteOne);
   }, [comments]);
 
   function handleCreateNewComment(event: React.FormEvent) {
     event.preventDefault();
-    setComments([...comments, newCommentText]);
+    setComments([...comments, {message: newCommentText, publishedAt: new Date()}]);
     setNewCommentText('');
   }
 
@@ -64,7 +65,7 @@ export function Post({ author, content, publishedAt }: PostProps) {
             <span>{author.role}</span>
           </div>
         </div>
-        <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>
+        <time dateTime={publishedAt.toISOString()}>
           {publishedDateRelativeToNow}
         </time>
       </header>
@@ -102,7 +103,7 @@ export function Post({ author, content, publishedAt }: PostProps) {
         {comments.map((comment) => {
           return ( 
             <Comment 
-              key={comment} 
+              key={comment.message} 
               comment={comment} 
               onDeleteComment={deleteComment}
             />
