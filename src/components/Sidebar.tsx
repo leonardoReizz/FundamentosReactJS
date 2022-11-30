@@ -1,5 +1,4 @@
 import { PencilLine } from 'phosphor-react';
-
 import bannerImage from '../assets/banner.png';
 import { Avatar } from './Avatar';
 import styles from './Sidebar.module.css';

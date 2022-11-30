@@ -118,6 +118,10 @@
   background: var(--green-300);
 }
 
+.commentForm button:disabled {
+  opacity: 0.5;
+}
+
 .commentList {
   margin-top: 2rem;
 }
